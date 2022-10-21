@@ -4,16 +4,9 @@ from os.path import exists
 
 def main():
     parser = argparse.ArgumentParser(description='Converts NCVEC Amateur Radio question pools into JSON files.')
-    parser.add_argument("-i", "--input", help="Filename of question pool to be inported")
-    parser.add_argument("-o", "--output", help="Directs the JSON to a name of your choice")
+    parser.add_argument("-i", "--input", help="Filename of question pool to be inported", required=True)
+    parser.add_argument("-o", "--output", help="Directs the JSON to a name of your choice", required=True)
     args = parser.parse_args()
-
-    if args.input == None or not exists(args.input):
-        print("Error: Need input file. Exiting.")
-        exit()
-    if args.output == None:
-        print("Erorr: Need output filename. Exiting")
-        exit()
 
     file = open(str(args.input), "r", encoding="utf-8")
     pool = file.read()
