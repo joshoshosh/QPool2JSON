@@ -8,6 +8,10 @@ def main():
     parser.add_argument("-o", "--output", help="Directs the JSON to a name of your choice", required=True)
     args = parser.parse_args()
 
+    if not exists(args.input):
+        print(basename(__file__) + ": error: the input file does not exist")
+        exit(0)
+
     file = open(str(args.input), "r", encoding="utf-8")
     pool = file.read()
     file.close()
